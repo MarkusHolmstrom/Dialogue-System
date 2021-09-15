@@ -28,7 +28,7 @@ namespace DialogueSystem
         private readonly string _doctor = "Doctor";
 
         public GameObject optionGO; // Assigned in inspector
-        public Text[] optionTexts = new Text[3]; // Assigned in inspector, 0 is the top one
+        public Text[] optionTexts = new Text[3]; // Assigned in inspector, index = 0 is the top one
         public GameObject continueButton;
 
         private readonly int lengthDialogueArray = 4;
@@ -42,8 +42,8 @@ namespace DialogueSystem
                                                                 {
                                                                         { "Where am I?", "The only thing I remember was listening to AC/DC and someone giving me a drink...", "Do we need a for-loop to solve this?", "No need for you to be rude... rudey!" }, // 100, 101, 102, 103
                                                                         { "No I dont even know who I am. Wait, am I the Hackerman?", "I think I am a student at Future Games...", "I think I have a deadline tomorrow, I am tucked!", "I dont know, what should I look for?" }, // 110, 111, 112, 113
-                                                                        { "I am confused, is this a some kind of a shit-faced game?", "Do you have any pretzels, I am kind of hungry?", "Wait, can I die? Can the hackerman die?", "opgdbht0-2" }, // 120, 121, 122, 123
-                                                                        { "Yeah you like a character from a shitty game!", "I dont need help, I am fine, Google will help us!", "132", "133" } }, // 130, 131, 132, 133
+                                                                        { "I am confused, is this a some kind of a shit-faced game?", "Do you have any pretzels, I am kind of hungry?", "Wait, can I die? Can the hackerman die?", "Cant you make me immortal doc? I'll do anything for you!" }, // 120, 121, 122, 123
+                                                                        { "Yeah you like a character from a shitty game!", "I dont need help, I am fine, Google will help us!", "Its where you learn how to hack in to mainframes and become memes!", "133" } }, // 130, 131, 132, 133
 
                                                                 {       { "No I dont remember any thing...", "Why cant I remember anything?", "Who are you?", "I wanna go home!" }, // 200, 201, 202, 203
                                                                         { "Whatever I dont care, where is my phone? I wanna check some memes on Discord.", "My head feels kind of sore, is that helpful?", "I dont wanna die!, Help me, treat me doc!", "[Senses the trap] No, YOU explain the concept of a school to ME!" }, // 210, 211, 212, 213
@@ -60,13 +60,13 @@ namespace DialogueSystem
         public string[,,] answerLines = new string[4, 4, 4] { {         { "This is not being used...", "Uhm... Okay, you are at a hospital.", "Do not worry you feel confused, you have suffered from severe head trauma.", "We all have to cope with loss, pal..." }, // 000, 001, 002, 003
                                                                         { "I am a nurse, you are at a hospital.", "Oh my, the tox screen showed a severe intake of alcohol, but not close to being lethal.", "Oh yeah, and I am the plucking dean of medicine of Princeton!", "Ah, well, this 'doc' [points at himself]´dont know whats wrong with you." }, // 010, 011, 012, 103
                                                                         { "A cylinder? [looks worrying towards the doctor in the room] I am a human, not a cylinder!", "But you had no drugs, or anything like that? Any exotic travels receently?", "Of course you are mortal, who do you think you are?", "Yes, people die from head traumas all the time, they are more commonly knowns as idiots!" }, // 020, 021, 022, 023
-                                                                        { "Cool... [ignore extra sentence here:, nurse interupts]", "Huddinge, that sounds... well, made up... [sighs]", "Well it isnt really a choice is it, is not like you can just say; 'I am pro-life' and no one else will have a problem with that, right?", "033" } },// 030, 031, 032, 033
+                                                                        { "Cool...", "Huddinge, that sounds... well, made up... [sighs]", "Well it isnt really a choice is it, is not like you can just say; 'I am pro-life' and no one else will have a problem with that, right?", "033" } },// 030, 031, 032, 033
 
                                                                 {
                                                                         { "You are at a hospital.", "Well ok, but you dont remember your name or anything useful?", "What is that, some cool programming-thingy?", "Yeah, there is no need for you to behave like an idiot either, but here we are!" }, // 100, 101, 102, 103
                                                                         { "Oh, I am over 30 years old, I dont get that reference...", "Oh my, you are a drunken fool and also a student, thats an odd couple.", "And if we dont figure out whats wrong with you, that deadline might seem miniscule to you...", "[Sighs] Is it anything you feel that would may be of interest to me, perhaps? I have no machine to help me, we only have the MRI nearby. It showed nothing." }, // 110, 111, 112, 113
-                                                                        { "Aha, you really think I would appear in this shitty game?", "Pretzels, are you mad? You dont know who you are and you want pretzels?", "122", "133" }, // 120, 121, 122, 123
-                                                                        { "Well, this character from that shitty game is the only one to help you!", "Everyone thinks they are a doctor or a programmer when Google came out, trust me, I know...", "132", "133" } }, // 130, 131, 132, 133
+                                                                        { "Aha, you really think I would appear in this shitty game?", "Pretzels, are you mad? You dont know who you are and you want pretzels?", "True memes never die, kid! But you will, well... you know eventually...", "Nah, even if i could, I probably would'nt..." }, // 120, 121, 122, 123
+                                                                        { "Well, this character from that shitty game is the only one to help you!", "Everyone thinks they are a doctor or a programmer when Google came out, trust me, I know...", "You've been watching to many movies...", "133" } }, // 130, 131, 132, 133
 
                                                                 {       { "Okay, dont worry, you have suffered from head trauma, a temporary loss of memory its usual.", "I put this in words you'll understand: Since you had an auchie in your headthingy, your memory have been compromised.", "[Annoyed] Dont worry your forgetful head about that...", "Me too, I was gonna order in some chinese tonight, and I dont mean the food. But those plans are in the dumpster now because of you..." },  // 200, 201, 202, 203
                                                                         { "Your memes can wait!", "[Sighs] We established a head injury already, where in the head does it hurt?", "1D2", "[Gives no shit about your trap and sighs] Is that how you gonna play this gane, huh?" }, // 210, 211, 212, 213
@@ -239,12 +239,6 @@ namespace DialogueSystem
             return true;
         }
 
-        private void InteruptingDialogue(int talkingToIndex)
-        {
-            gameState.currentlyTalkingToIndex = talkingToIndex;
-            _uIManager.InteractWithNPC(gameState.nPCNames[gameState.currentlyTalkingToIndex],
-                    GameObject.FindGameObjectWithTag(gameState.nPCNames[gameState.currentlyTalkingToIndex]).transform.position);
-        }
 
         public void ContinueDialogue()
         {

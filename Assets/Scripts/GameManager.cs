@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviour
         _dialogueManager.GetNewDialogueOptions(index);
     }
 
-    public void BusyNPC()
+    public void BusyNPC(string message)
     {
-        _uIManager.ChangeDialogueText("Stop talking to me, waste the nurses time instead, not mine!");
+        _dialogueManager.EndDialogue(message);
     }
 }

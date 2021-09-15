@@ -36,7 +36,7 @@ namespace DialogueSystem
 
                                                                 {
                                                                         { "I am the doctor that can help you. The rest are occupied with more interesting cases...", "Well ok, but you dont remember your name or anything useful?", "They sure are, 'bruh', I like them more than I like patients, thats for sure.", "opt0grr-2" }, // 100, 101, 102, 103
-                                                                        { "That is a person in this room that is about to lose its patience!", "Huh, how come I never heard of it?", "[End conversation]", "opdrgt0-2" }, // 110, 111, 112, 113
+                                                                        { "That is a person in this room that is about to lose its patience!", "Huh, how come I never heard of it? Sounds made up", "[End conversation]", "opdrgt0-2" }, // 110, 111, 112, 113
                                                                         { "Really, you think?", "[End conversation]", "2D1", "opgdbht0-2" }, // 120, 121, 122, 123
                                                                         { "1A3", "Bnujy", "3D1", "opt0-2th" } }, // 130, 131, 132, 133
 
