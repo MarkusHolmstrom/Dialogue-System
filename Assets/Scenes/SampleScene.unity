@@ -296,6 +296,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156628680}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &189615452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4704594863592666660, guid: fc2eecfb7e88aea46b6689455b68b698, type: 3}
+  m_PrefabInstance: {fileID: 4704594863826372503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &200581679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4704594863592666660, guid: fc2eecfb7e88aea46b6689455b68b698, type: 3}
+  m_PrefabInstance: {fileID: 1173816230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &317722354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,6 +1004,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &752679432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4704594863592666660, guid: fc2eecfb7e88aea46b6689455b68b698, type: 3}
+  m_PrefabInstance: {fileID: 317722354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &884858408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2576,10 @@ MonoBehaviour:
   - {fileID: 1173816232}
   - {fileID: 317722356}
   continueButton: {fileID: 633459146}
+  optionButtons:
+  - {fileID: 189615452}
+  - {fileID: 200581679}
+  - {fileID: 752679432}
 --- !u!1 &1931935765
 GameObject:
   m_ObjectHideFlags: 0

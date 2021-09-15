@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 // https://www.youtube.com/watch?v=_nRzoTzeyxU
 
@@ -30,6 +29,7 @@ namespace DialogueSystem
         public GameObject optionGO; // Assigned in inspector
         public Text[] optionTexts = new Text[3]; // Assigned in inspector, index = 0 is the top one
         public GameObject continueButton;
+        public Button[] optionButtons = new Button[3];
 
         private readonly int lengthDialogueArray = 4;
 
@@ -68,7 +68,7 @@ namespace DialogueSystem
                                                                         { "Aha, you really think I would appear in this shitty game?", "Pretzels, are you mad? You dont know who you are and you want pretzels?", "True memes never die, kid! But you will, well... you know eventually...", "Nah, even if i could, I probably would'nt..." }, // 120, 121, 122, 123
                                                                         { "Well, this character from that shitty game is the only one to help you!", "Everyone thinks they are a doctor or a programmer when Google came out, trust me, I know...", "You've been watching to many movies...", "133" } }, // 130, 131, 132, 133
 
-                                                                {       { "Okay, dont worry, you have suffered from head trauma, a temporary loss of memory its usual.", "I put this in words you'll understand: Since you had an auchie in your headthingy, your memory have been compromised.", "[Annoyed] Dont worry your forgetful head about that...", "Me too, I was gonna order in some chinese tonight, and I dont mean the food. But those plans are in the dumpster now because of you..." },  // 200, 201, 202, 203
+                                                                {       { "Okay, dont worry, you have suffered from head trauma, a temporary loss of memory is usual.", "I put this in words you'll understand: Since you had an auchie in your headthingy, your memory have been compromised.", "[Annoyed] Dont worry your forgetful head about that...", "Me too, I was gonna order in some chinese tonight, and I dont mean the food. But those plans are in the dumpster now because of you..." },  // 200, 201, 202, 203
                                                                         { "Your memes can wait!", "[Sighs] We established a head injury already, where in the head does it hurt?", "1D2", "[Gives no shit about your trap and sighs] Is that how you gonna play this gane, huh?" }, // 210, 211, 212, 213
                                                                         { "'Sry'? You know there is an 'o' and an additional 'r' in that word too?", "[Touches your forehead] Good news, you dont have a fever, you are just crazy!", "Oh its nothing [thumbles] its a baseball bat, I play with the Mets! Oh wait, you cant see what this is? [strunta i följdfråga]", "223" }, // 220, 221, 222, 223
                                                                         { "2A3", "Yes, school seems to be 'boooooooring' - for stupid people! See what I did there? [Looks at the nurse]", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
@@ -102,6 +102,8 @@ namespace DialogueSystem
         private UIManager _uIManager;
         private string[,,] _currentDialogueLines = new string[4, 4, 4];
 
+        private int currentIndex = 0;
+
         void Awake()
         {
             _uIGO = GameObject.FindGameObjectWithTag("Canvas");
@@ -111,36 +113,18 @@ namespace DialogueSystem
             gameState.nPCNames.Add(_nurse);
             gameState.nPCNames.Add(_doctor);
 
+            // ResetDialogue();
+        }
+
+        // Reset to start the dialogue:
+        public void ResetDialogue()
+        {
+            gameState.currentlyTalkingToIndex = 0;
             _currentDialogueLines = dialogueLines;
-        }
-        // Start is called before the first frame update
-        void Start()
-        {
             _currentDialogueIndex = Vector3Int.zero;
-            sentences = new Queue<string>();
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    Debug.Log(dialogueIndex[i, 0, 0]); // sv går igenom de första längs x
-            //}
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    Debug.LogError(dialogueIndex[0, i, 0]); // går igenom de första längs y
-            //}
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    Debug.Log(dialogueIndex[0, 0, i]); // går igenom en {" ", " ", " "}
-            //}
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        private int currentIndex = 0;
-
-        public void GetNewDialogueOptions(int index)
+        public void StartDialogue(int index)
         {
             currentIndex = index;
             optionGO.SetActive(true);
@@ -148,6 +132,15 @@ namespace DialogueSystem
             int optionIndex = 0;
             foreach (DialogueOption item in node.options)
             {
+                // Check to see if this answer/question has already been given:
+                if (gameState.allDialogueHistory.Contains(item)) // sv. funkar detta?
+                {
+                    optionButtons[optionIndex].interactable = false;
+                }
+                else
+                {
+                    optionButtons[optionIndex].interactable = true;
+                }
                 optionTexts[optionIndex].text = item.response;
                 optionIndex++;
             }
@@ -189,8 +182,13 @@ namespace DialogueSystem
 
         public void ChooseOption(int index) // Activated through buttons in "optionsGO"
         {
-            if (_addLinesCounter >= additionalNPCLines.Length)
+            if (_addLinesCounter >= additionalNPCLines.Length) // Done with the conversation:
             {
+                // ugly quick fix to change thew doctor's mood:
+                GameObject doc = GameObject.FindGameObjectWithTag("Doctor");
+                OtherPlayer op = doc.GetComponent<OtherPlayer>();
+                op.mood = OtherPlayer.Mood.Busy;
+
                 EndDialogue(additionalNPCLines[additionalNPCLines.Length - 1]);
                 return;
             }
@@ -219,7 +217,7 @@ namespace DialogueSystem
                     GameObject.FindGameObjectWithTag(gameState.nPCNames[gameState.currentlyTalkingToIndex]).transform.position);
             }
 
-            GetNewDialogueOptions(currentIndex);
+            StartDialogue(currentIndex);
         }
 
         // sv private int afterDoctorNPCQue = 50;
@@ -252,5 +250,6 @@ namespace DialogueSystem
             optionGO.SetActive(false);
             _uIManager.ExitDialogue(message);
         }
+
     }
 }

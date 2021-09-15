@@ -41,7 +41,7 @@ namespace DialogueSystem
                                                                         { "1A3", "Bnujy", "3D1", "opt0-2th" } }, // 130, 131, 132, 133
 
                                                                 {       { "Okay, dont worry, you suffered from head trauma, a temporary loss of memory is usual.", "Okay, so your memory is not on a complete zero, close, but not zero, at least.", "0D2", "hytopt0-2" },  // 200, 201, 202, 203
-                                                                        { "Oh, really, if you spent more time at schools you would be able to come up with a smarter reply than that.", "[End conversation]", "1D2", "opt0-2tyh" }, // 210, 211, 212, 213
+                                                                        { "Oh, really, if you spent more time at schools you would be able to come up with a smarter reply than that.", "[End conversation]", "What does it look like, I am wearing these 'listen-to-your-heart-thingies' here!", "opt0-2tyh" }, // 210, 211, 212, 213
                                                                         { "2A2", "Bgnk", "2D2", "hyhopt0-2" }, // 220, 221, 222, 223
                                                                         { "2A3", "Bbnml", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
 

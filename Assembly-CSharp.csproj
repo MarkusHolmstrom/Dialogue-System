@@ -55,16 +55,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraHandler.cs" />
     <Compile Include="Assets\Scripts\DialogueOption.cs" />
-    <Compile Include="Assets\Scripts\EventHandler.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\ExtraDialogue.cs" />
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\State.cs" />
     <Compile Include="Assets\Scripts\OtherPlayer.cs" />
-    <Compile Include="Assets\Scripts\DialogueList.cs" />
     <Compile Include="Assets\Scripts\DialogueNode.cs" />
-    <Compile Include="Assets\Scripts\ExtraDialogue.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

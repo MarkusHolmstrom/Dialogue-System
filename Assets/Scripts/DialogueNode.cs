@@ -6,9 +6,7 @@ namespace DialogueSystem
 {
     public class DialogueNode
     {
-        public int nodeID = -1; //I use -1 as a way to exit a conversation.
-                                //NodeId should be a positive number
-
+        public int nodeID = -1; 
         public string text;
         public List<DialogueOption> options = new List<DialogueOption>();
 

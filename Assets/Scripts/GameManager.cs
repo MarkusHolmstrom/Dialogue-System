@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
     public void LookForNPC(GameObject go, int index)
     {
         _uIManager.InteractWithNPC(go.tag, go.transform.position);
-        _dialogueManager.GetNewDialogueOptions(index);
+        _dialogueManager.ResetDialogue();
+        _dialogueManager.StartDialogue(index);
     }
 
     public void BusyNPC(string message)
