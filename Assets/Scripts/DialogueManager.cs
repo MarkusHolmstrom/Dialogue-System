@@ -16,7 +16,9 @@ namespace DialogueSystem
         }
         public int talkToNextNPCQue = 2; // Start talking to the doctor in this case when a counter in DialogueManager reaches this number
         public List<string> nPCNames = new List<string>();
-        public List<DialogueOption> allDialogueHistory = new List<DialogueOption>();
+        // public List<DialogueOption> allDialogueHistory = new List<DialogueOption>();
+        public List<string> allDialogueHistory = new List<string>();
+
     }
 
     public class DialogueManager : MonoBehaviour
@@ -37,7 +39,7 @@ namespace DialogueSystem
         public string[,,] dialogueLines = new string[4, 4, 4] { {       { "This is not being used...", "Mäöm, I dont wanna go to school today...", "I remember coding a game, then I talked to a rubber duck...", "[Sad] I miss my rubber duck..." }, // 000, 001, 002, 003
                                                                         { "Who are you?", "The last thing that I heard was someone saying 'What the f*ck', then it all went black.", "I think I am a student... at Hackerman University!", "But doc, tell me what I should do!" }, // 010, 011, 012, 103
                                                                         { "Why do you look like a cylinder?", "Yeah, I think I remember having some drinks now...", "The word 'Arboga' just hit my mind, can that mean something?", "Is it serious, can I die from this head trauma?" }, // 020, 021, 022, 023
-                                                                        { "[030, Golden boy] I can only see simple shapes, like cubes and cylinders, whats going on?", "I think I was in Huddinge...", "I dont want to be mortal...", "033" } }, // 030, 031, 032, 033
+                                                                        { "I can only see simple shapes, like cubes and cylinders, whats going on?", "I think I was in Huddinge...", "I dont want to be mortal...", "033" } }, // 030, 031, 032, 033
 
                                                                 {
                                                                         { "Where am I?", "The only thing I remember was listening to AC/DC and someone giving me a drink...", "Do we need a for-loop to solve this?", "No need for you to be rude... rudey!" }, // 100, 101, 102, 103
@@ -48,19 +50,19 @@ namespace DialogueSystem
                                                                 {       { "No I dont remember any thing...", "Why cant I remember anything?", "Who are you?", "I wanna go home!" }, // 200, 201, 202, 203
                                                                         { "Whatever I dont care, where is my phone? I wanna check some memes on Discord.", "My head feels kind of sore, is that helpful?", "I dont wanna die!, Help me, treat me doc!", "[Senses the trap] No, YOU explain the concept of a school to ME!" }, // 210, 211, 212, 213
                                                                         { "Sry, I am just confused...", "Does anyone really understand how Git works?", "What is that stick next to you?", "hyhopt0-2" }, // 220, 221, 222, 223
-                                                                        { "2A3", "Boooooooooooooooooooring!", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
+                                                                        { "Your mama is so fat...", "Boooooooooooooooooooring!", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
 
                                                                 {
                                                                         { "What is going on, is this a dream?", "I can honestly dont remember anything...", "Why is that, what is wrong, where is everyone else?", "303" }, // 300, 301, 302, 303
                                                                         { "One does not just simply wait for memes!", "I dont wanna play this any more!", "Its a building with walls and doctors, nurses and.. patients!", "313" }, // 310, 311, 312, 313
-                                                                        { "3A2", "The rubber ducks know where I live! [Horrified]", "2D3", "opt0-gd2" }, // 320, 321, 322, 323
+                                                                        { "What the hell is going on?", "The rubber ducks know where I live! [Horrified]", "2D3", "opt0-gd2" }, // 320, 321, 322, 323
                                                                         { "3A3", "Bv", "3D3", "opt0ret-2" } // 330, 331, 332, 333
                                                                 }};
 
         public string[,,] answerLines = new string[4, 4, 4] { {         { "This is not being used...", "Uhm... Okay, you are at a hospital.", "Do not worry you feel confused, you have suffered from severe head trauma.", "We all have to cope with loss, pal..." }, // 000, 001, 002, 003
                                                                         { "I am a nurse, you are at a hospital.", "Oh my, the tox screen showed a severe intake of alcohol, but not close to being lethal.", "Oh yeah, and I am the plucking dean of medicine of Princeton!", "Ah, well, this 'doc' [points at himself]´dont know whats wrong with you." }, // 010, 011, 012, 103
                                                                         { "A cylinder? [looks worrying towards the doctor in the room] I am a human, not a cylinder!", "But you had no drugs, or anything like that? Any exotic travels receently?", "Of course you are mortal, who do you think you are?", "Yes, people die from head traumas all the time, they are more commonly knowns as idiots!" }, // 020, 021, 022, 023
-                                                                        { "Cool...", "Huddinge, that sounds... well, made up... [sighs]", "Well it isnt really a choice is it, is not like you can just say; 'I am pro-life' and no one else will have a problem with that, right?", "033" } },// 030, 031, 032, 033
+                                                                        { "Cool... that means an injury to the occipital lobe. [Doctor is Intrigued]", "Huddinge, that sounds... well, made up... [sighs]", "Well it isnt really a choice is it, is not like you can just say; 'I am pro-life' and no one else will have a problem with that, right?", "033" } },// 030, 031, 032, 033
 
                                                                 {
                                                                         { "You are at a hospital.", "Well ok, but you dont remember your name or anything useful?", "What is that, some cool programming-thingy?", "Yeah, there is no need for you to behave like an idiot either, but here we are!" }, // 100, 101, 102, 103
@@ -71,12 +73,12 @@ namespace DialogueSystem
                                                                 {       { "Okay, dont worry, you have suffered from head trauma, a temporary loss of memory is usual.", "I put this in words you'll understand: Since you had an auchie in your headthingy, your memory have been compromised.", "[Annoyed] Dont worry your forgetful head about that...", "Me too, I was gonna order in some chinese tonight, and I dont mean the food. But those plans are in the dumpster now because of you..." },  // 200, 201, 202, 203
                                                                         { "Your memes can wait!", "[Sighs] We established a head injury already, where in the head does it hurt?", "1D2", "[Gives no shit about your trap and sighs] Is that how you gonna play this gane, huh?" }, // 210, 211, 212, 213
                                                                         { "'Sry'? You know there is an 'o' and an additional 'r' in that word too?", "[Touches your forehead] Good news, you dont have a fever, you are just crazy!", "Oh its nothing [thumbles] its a baseball bat, I play with the Mets! Oh wait, you cant see what this is? [strunta i följdfråga]", "223" }, // 220, 221, 222, 223
-                                                                        { "2A3", "Yes, school seems to be 'boooooooring' - for stupid people! See what I did there? [Looks at the nurse]", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
+                                                                        { "What, so fat that I got diabetes? You need to work on your insults...", "Yes, school seems to be 'boooooooring' - for stupid people! See what I did there? [Looks at the nurse]", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
 
                                                                 {
                                                                         { "Why do you ask that, does something look weird to you?", "Well that concludes with the definition of memery loss...", "Theres a storm outside and its superbowl, why should you care? Worry about yourself right now and try to remember something.", "303" }, // 300, 301, 302, 303
                                                                         { "Oh, great, a millennial... just great.", "Niether do I, but atleast I get paid, so I am a bit happy.", "No... why do you think that?", "313" }, // 310, 311, 312, 313
-                                                                        { "3A2", "Yeah, you must watch out after them... [Sighs and scratches his head]", "2D3", "opt0-gd2" }, // 320, 321, 322, 323
+                                                                        { "I dont know, but I can tell you whats off: my mood and your health! [Doctor mood: off]", "Yeah, you must watch out after them... [Sighs and scratches his head]", "2D3", "opt0-gd2" }, // 320, 321, 322, 323
                                                                         { "3A3", "Bv", "3D3", "opt0ret-2" } // 330, 331, 332, 333
                                                                 }};
 
@@ -101,8 +103,13 @@ namespace DialogueSystem
         private GameObject _uIGO;
         private UIManager _uIManager;
         private string[,,] _currentDialogueLines = new string[4, 4, 4];
+        private string[,,] _currentAnswerLines = new string[4, 4, 4];
 
-        private int currentIndex = 0;
+
+        private int _currentIndex = 0;
+
+        private int _counter = 0;
+        private int _addLinesCounter = 0;
 
         void Awake()
         {
@@ -116,24 +123,27 @@ namespace DialogueSystem
             // ResetDialogue();
         }
 
-        // Reset to start the dialogue:
+        // Reset to start the dialogue, added with string arrays so the demo will work:
         public void ResetDialogue()
         {
             gameState.currentlyTalkingToIndex = 0;
-            _currentDialogueLines = dialogueLines;
+            _addLinesCounter = 0;
             _currentDialogueIndex = Vector3Int.zero;
+
+            _currentDialogueLines = dialogueLines;
+            _currentAnswerLines = answerLines;
         }
 
-        public void StartDialogue(int index)
+        public void GetNewDialogue(int index)
         {
-            currentIndex = index;
+            _currentIndex = index;
             optionGO.SetActive(true);
             DialogueNode node = new DialogueNode(index, FindOptions(_currentDialogueIndex));
             int optionIndex = 0;
             foreach (DialogueOption item in node.options)
             {
                 // Check to see if this answer/question has already been given:
-                if (gameState.allDialogueHistory.Contains(item)) // sv. funkar detta?
+                if (gameState.allDialogueHistory.Contains(item.message)) 
                 {
                     optionButtons[optionIndex].interactable = false;
                 }
@@ -141,7 +151,7 @@ namespace DialogueSystem
                 {
                     optionButtons[optionIndex].interactable = true;
                 }
-                optionTexts[optionIndex].text = item.response;
+                optionTexts[optionIndex].text = item.message;
                 optionIndex++;
             }
             optionGO.SetActive(false);
@@ -152,13 +162,13 @@ namespace DialogueSystem
         {
             _currentOptions = new List<DialogueOption>();
             Vector3Int newOptionLocation = new Vector3Int(v3.x + 1, v3.y + 1, v3.z + 1);
-            Debug.Log(newOptionLocation + " " + lengthDialogueArray);
+            // If the dialogue in this class is complete:
             if (newOptionLocation.x >= lengthDialogueArray || newOptionLocation.y >= lengthDialogueArray || newOptionLocation.z >= lengthDialogueArray)
             {
                 ExtraDialogue extraDialogue = new ExtraDialogue();
                 _currentDialogueLines = extraDialogue.dialogueIndex;
-                answerLines = extraDialogue.answerIndex;
-                currentIndex = 0;
+                _currentAnswerLines = extraDialogue.answerIndex;
+                _currentIndex = 0;
                 v3 = Vector3Int.zero;
                 newOptionLocation = new Vector3Int(v3.x + 1, v3.y + 1, v3.z + 1);
             }
@@ -177,14 +187,12 @@ namespace DialogueSystem
             return option;
         }
 
-        private int _counter = 0;
-        private int _addLinesCounter = 0;
 
         public void ChooseOption(int index) // Activated through buttons in "optionsGO"
         {
             if (_addLinesCounter >= additionalNPCLines.Length) // Done with the conversation:
             {
-                // ugly quick fix to change thew doctor's mood:
+                // ugly quick-fix to change the doctor's mood:
                 GameObject doc = GameObject.FindGameObjectWithTag("Doctor");
                 OtherPlayer op = doc.GetComponent<OtherPlayer>();
                 op.mood = OtherPlayer.Mood.Busy;
@@ -192,12 +200,12 @@ namespace DialogueSystem
                 EndDialogue(additionalNPCLines[additionalNPCLines.Length - 1]);
                 return;
             }
-            if (currentIndex < lengthDialogueArray)
+            if (_currentIndex < lengthDialogueArray)
             {
-                currentIndex++;
+                _currentIndex++;
             }
             _currentOption = _currentOptions[index];
-            gameState.allDialogueHistory.Add(_currentOption);
+            gameState.allDialogueHistory.Add(_currentOption.message);
 
             _currentDialogueIndex = _currentOption.dialogueIndex;
             Debug.Log(_currentOption.dialogueIndex);
@@ -217,7 +225,7 @@ namespace DialogueSystem
                     GameObject.FindGameObjectWithTag(gameState.nPCNames[gameState.currentlyTalkingToIndex]).transform.position);
             }
 
-            StartDialogue(currentIndex);
+            GetNewDialogue(_currentIndex);
         }
 
         // sv private int afterDoctorNPCQue = 50;

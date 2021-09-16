@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         _nurse = GameObject.FindGameObjectWithTag("Nurse");
         // Game starts:
-        LookForNPC(_nurse, 0);
+        StartDialogue(_nurse, 0);
     }
 
     // Update is called once per frame
@@ -41,11 +41,11 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void LookForNPC(GameObject go, int index)
+    public void StartDialogue(GameObject go, int index)
     {
         _uIManager.InteractWithNPC(go.tag, go.transform.position);
         _dialogueManager.ResetDialogue();
-        _dialogueManager.StartDialogue(index);
+        _dialogueManager.GetNewDialogue(index);
     }
 
     public void BusyNPC(string message)

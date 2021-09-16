@@ -6,12 +6,12 @@ namespace DialogueSystem
 {
     public class DialogueOption
     {
-        public string response;
+        public string message;
         public Vector3Int dialogueIndex; // ID and location on the dialogueIndex array in class "DialogueManager"
 
-        public DialogueOption(string response, Vector3Int dialogueIndex)
+        public DialogueOption(string message, Vector3Int dialogueIndex)
         {
-            this.response = response;
+            this.message = message;
             this.dialogueIndex = dialogueIndex;
         }
     }

@@ -31,7 +31,7 @@ namespace DialogueSystem
         {
             if (!speaking && mood != Mood.Busy)
             {
-                _gameManager.LookForNPC(this.gameObject, 0);
+                _gameManager.StartDialogue(this.gameObject, 0);
                 speaking = true;
                 Debug.Log("This is a " + tag);
             }
