@@ -36,17 +36,6 @@ namespace DialogueSystem
 
                 transform.localEulerAngles = new Vector3(-_rotX, _rotY, 0);
 
-                if (Input.GetKeyDown(KeyCode.Escape)) //
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = false;
-                }
-
-                //if (Cursor.visible && Input.GetMouseButtonDown(0)) //
-                //{
-                //    Cursor.lockState = CursorLockMode.Locked;
-                //    Cursor.visible = true;
-                //}
             }
         }
 

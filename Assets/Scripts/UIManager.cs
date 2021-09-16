@@ -8,8 +8,6 @@ using DialogueSystem;
 
 public class UIManager : MonoBehaviour
 {
-    //[SerializeField] private GameObject dialogueBox;
-
     private GameObject _mainCamera;
     private CameraHandler _cameraHandler;
 
@@ -23,14 +21,9 @@ public class UIManager : MonoBehaviour
     {
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         _cameraHandler = _mainCamera.GetComponent<CameraHandler>();
-        _dialogueText.text = "Oh doctor, I think the patient is MonoBehaviour.Awake() now..."; // Sv startcoroutine?? . .. ...
+        _dialogueText.text = "Oh doctor, I think the patient is MonoBehaviour.Awake() now..."; 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void InteractWithNPC(string text, Vector3 pos)
     {

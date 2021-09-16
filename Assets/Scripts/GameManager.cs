@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 
     private GameObject _nurse;
 
-    private GameObject _mainCamera;
-    private CameraHandler _cameraHandler;
 
     private GameObject _uIGO;
     private UIManager _uIManager;
@@ -21,8 +19,6 @@ public class GameManager : MonoBehaviour
     {
         _dialogueManager = _diaManagerGO.GetComponent<DialogueManager>();
 
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        _cameraHandler = _mainCamera.GetComponent<CameraHandler>();
 
         _uIGO = GameObject.FindGameObjectWithTag("Canvas");
         _uIManager = _uIGO.GetComponent<UIManager>();
@@ -33,12 +29,6 @@ public class GameManager : MonoBehaviour
         _nurse = GameObject.FindGameObjectWithTag("Nurse");
         // Game starts:
         StartDialogue(_nurse, 0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StartDialogue(GameObject go, int index)

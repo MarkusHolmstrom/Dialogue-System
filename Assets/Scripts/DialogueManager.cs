@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// https://www.youtube.com/watch?v=_nRzoTzeyxU
 
 namespace DialogueSystem
 {
@@ -16,14 +15,12 @@ namespace DialogueSystem
         }
         public int talkToNextNPCQue = 2; // Start talking to the doctor in this case when a counter in DialogueManager reaches this number
         public List<string> nPCNames = new List<string>();
-        // public List<DialogueOption> allDialogueHistory = new List<DialogueOption>();
         public List<string> allDialogueHistory = new List<string>();
 
     }
 
     public class DialogueManager : MonoBehaviour
     {
-        public Queue<string> sentences; //
         public GameState gameState;
         private readonly string _nurse = "Nurse";
         private readonly string _doctor = "Doctor";
@@ -49,14 +46,14 @@ namespace DialogueSystem
 
                                                                 {       { "No I dont remember any thing...", "Why cant I remember anything?", "Who are you?", "I wanna go home!" }, // 200, 201, 202, 203
                                                                         { "Whatever I dont care, where is my phone? I wanna check some memes on Discord.", "My head feels kind of sore, is that helpful?", "I dont wanna die!, Help me, treat me doc!", "[Senses the trap] No, YOU explain the concept of a school to ME!" }, // 210, 211, 212, 213
-                                                                        { "Sry, I am just confused...", "Does anyone really understand how Git works?", "What is that stick next to you?", "hyhopt0-2" }, // 220, 221, 222, 223
-                                                                        { "Your mama is so fat...", "Boooooooooooooooooooring!", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
+                                                                        { "Sry, I am just confused...", "Does anyone really understand how Git works?", "What is that stick next to you?", "223" }, // 220, 221, 222, 223
+                                                                        { "Your mama is so fat...", "Boooooooooooooooooooring!", "232", "233" } }, // 230, 231, 232, 233
 
                                                                 {
                                                                         { "What is going on, is this a dream?", "I can honestly dont remember anything...", "Why is that, what is wrong, where is everyone else?", "303" }, // 300, 301, 302, 303
                                                                         { "One does not just simply wait for memes!", "I dont wanna play this any more!", "Its a building with walls and doctors, nurses and.. patients!", "313" }, // 310, 311, 312, 313
-                                                                        { "What the hell is going on?", "The rubber ducks know where I live! [Horrified]", "2D3", "opt0-gd2" }, // 320, 321, 322, 323
-                                                                        { "3A3", "Bv", "3D3", "opt0ret-2" } // 330, 331, 332, 333
+                                                                        { "What the hell is going on?", "The rubber ducks know where I live! [Horrified]", "322", "323" }, // 320, 321, 322, 323
+                                                                        { "330", "331", "332", "333" } // 330, 331, 332, 333
                                                                 }};
 
         public string[,,] answerLines = new string[4, 4, 4] { {         { "This is not being used...", "Uhm... Okay, you are at a hospital.", "Do not worry you feel confused, you have suffered from severe head trauma.", "We all have to cope with loss, pal..." }, // 000, 001, 002, 003
@@ -71,15 +68,15 @@ namespace DialogueSystem
                                                                         { "Well, this character from that shitty game is the only one to help you!", "Everyone thinks they are a doctor or a programmer when Google came out, trust me, I know...", "You've been watching to many movies...", "133" } }, // 130, 131, 132, 133
 
                                                                 {       { "Okay, dont worry, you have suffered from head trauma, a temporary loss of memory is usual.", "I put this in words you'll understand: Since you had an auchie in your headthingy, your memory have been compromised.", "[Annoyed] Dont worry your forgetful head about that...", "Me too, I was gonna order in some chinese tonight, and I dont mean the food. But those plans are in the dumpster now because of you..." },  // 200, 201, 202, 203
-                                                                        { "Your memes can wait!", "[Sighs] We established a head injury already, where in the head does it hurt?", "1D2", "[Gives no shit about your trap and sighs] Is that how you gonna play this gane, huh?" }, // 210, 211, 212, 213
+                                                                        { "Your memes can wait!", "[Sighs] We established a head injury already, where in the head does it hurt?", "Okay, as if the salary wasnt enough of an enticement to try to heal you!", "[Gives no shit about your trap and sighs] Is that how you gonna play this game, huh?" }, // 210, 211, 212, 213
                                                                         { "'Sry'? You know there is an 'o' and an additional 'r' in that word too?", "[Touches your forehead] Good news, you dont have a fever, you are just crazy!", "Oh its nothing [thumbles] its a baseball bat, I play with the Mets! Oh wait, you cant see what this is? [strunta i följdfråga]", "223" }, // 220, 221, 222, 223
-                                                                        { "What, so fat that I got diabetes? You need to work on your insults...", "Yes, school seems to be 'boooooooring' - for stupid people! See what I did there? [Looks at the nurse]", "3D2", "opt0-2gyh" } }, // 230, 231, 232, 233
+                                                                        { "What, so fat that I got diabetes? You need to work on your insults...", "Yes, school seems to be 'boooooooring' - for stupid people! See what I did there? [Looks at the nurse]", "232", "233" } }, // 230, 231, 232, 233
 
                                                                 {
                                                                         { "Why do you ask that, does something look weird to you?", "Well that concludes with the definition of memery loss...", "Theres a storm outside and its superbowl, why should you care? Worry about yourself right now and try to remember something.", "303" }, // 300, 301, 302, 303
                                                                         { "Oh, great, a millennial... just great.", "Niether do I, but atleast I get paid, so I am a bit happy.", "No... why do you think that?", "313" }, // 310, 311, 312, 313
-                                                                        { "I dont know, but I can tell you whats off: my mood and your health! [Doctor mood: off]", "Yeah, you must watch out after them... [Sighs and scratches his head]", "2D3", "opt0-gd2" }, // 320, 321, 322, 323
-                                                                        { "3A3", "Bv", "3D3", "opt0ret-2" } // 330, 331, 332, 333
+                                                                        { "I dont know, but I can tell you whats off: my mood and your health! [Doctor mood: off]", "Yeah, you must watch out after them... [Sighs and scratches his head]", "322", "323" }, // 320, 321, 322, 323
+                                                                        { "330", "331", "332", "333" } // 330, 331, 332, 333
                                                                 }};
 
         // List of additional lines from NPCs, gets moved one index every time a NPC says something, leave a index empty
@@ -119,8 +116,6 @@ namespace DialogueSystem
             gameState = new GameState(0);
             gameState.nPCNames.Add(_nurse);
             gameState.nPCNames.Add(_doctor);
-
-            // ResetDialogue();
         }
 
         // Reset to start the dialogue, added with string arrays so the demo will work:
@@ -138,11 +133,21 @@ namespace DialogueSystem
         {
             _currentIndex = index;
             optionGO.SetActive(true);
-            DialogueNode node = new DialogueNode(index, FindOptions(_currentDialogueIndex));
+            DialogueNode node;
+
+            if (_addLinesCounter != additionalNPCLines.Length) // If we havent reached the end:
+            {
+                node = new DialogueNode(index, FindOptions(_currentDialogueIndex));
+            }
+            else
+            {
+                node = new DialogueNode(index, GetEndingOptions());
+            }
+
             int optionIndex = 0;
             foreach (DialogueOption item in node.options)
             {
-                // Check to see if this answer/question has already been given:
+                // Check to see if this answer/question has already been given/said:
                 if (gameState.allDialogueHistory.Contains(item.message)) 
                 {
                     optionButtons[optionIndex].interactable = false;
@@ -166,17 +171,29 @@ namespace DialogueSystem
             if (newOptionLocation.x >= lengthDialogueArray || newOptionLocation.y >= lengthDialogueArray || newOptionLocation.z >= lengthDialogueArray)
             {
                 ExtraDialogue extraDialogue = new ExtraDialogue();
-                _currentDialogueLines = extraDialogue.dialogueIndex;
-                _currentAnswerLines = extraDialogue.answerIndex;
+                _currentDialogueLines = extraDialogue.dialogueLines;
+                _currentAnswerLines = extraDialogue.answerLines;
                 _currentIndex = 0;
                 v3 = Vector3Int.zero;
                 newOptionLocation = new Vector3Int(v3.x + 1, v3.y + 1, v3.z + 1);
             }
 
-            // Create a list with the options for the given dialogue node, adding with one for every dimension and possibility
+            // Create a list with the options for the given dialogue node, adding with one for every dimension (x, y or z) and possibility
             _currentOptions.Add(AddNewOption(new Vector3Int(newOptionLocation.x, v3.y, v3.z)));
             _currentOptions.Add(AddNewOption(new Vector3Int(v3.x, newOptionLocation.y, v3.z)));
             _currentOptions.Add(AddNewOption(new Vector3Int(v3.x, v3.y, newOptionLocation.z)));
+
+            return _currentOptions;
+        }
+        // Make sure the player has conversation-ending options at the end:
+        private List<DialogueOption> GetEndingOptions()
+        {
+            _currentOptions = new List<DialogueOption>();
+            ExtraDialogue extraDialogue = new ExtraDialogue();
+            _currentDialogueLines = extraDialogue.dialogueLines;
+            _currentOptions.Add(AddNewOption(new Vector3Int(1, 1, 2)));
+            _currentOptions.Add(AddNewOption(new Vector3Int(1, 2, 1)));
+            _currentOptions.Add(AddNewOption(new Vector3Int(2, 1, 1)));
 
             return _currentOptions;
         }
@@ -208,10 +225,12 @@ namespace DialogueSystem
             gameState.allDialogueHistory.Add(_currentOption.message);
 
             _currentDialogueIndex = _currentOption.dialogueIndex;
-            Debug.Log(_currentOption.dialogueIndex);
-            _uIManager.ChangeDialogueText(answerLines[  _currentOption.dialogueIndex.x, 
-                                                        _currentOption.dialogueIndex.y, 
-                                                        _currentOption.dialogueIndex.z   ] + " " + additionalNPCLines[_addLinesCounter]);
+
+            _uIManager.ChangeDialogueText(_currentAnswerLines[  
+                _currentOption.dialogueIndex.x, 
+                _currentOption.dialogueIndex.y, 
+                _currentOption.dialogueIndex.z   ] + " " + additionalNPCLines[_addLinesCounter]);
+
             _addLinesCounter++;
             
             if (_counter < gameState.nPCNames.Count)
@@ -228,11 +247,8 @@ namespace DialogueSystem
             GetNewDialogue(_currentIndex);
         }
 
-        // sv private int afterDoctorNPCQue = 50;
-
         private bool NewInteractNPC(int counter)
         {
-            //Debug.LogWarning(counter + " " + gameState.talkToNextNPCQue + " " + currentIndex);
             if (counter < gameState.talkToNextNPCQue)
             {
                 return false;

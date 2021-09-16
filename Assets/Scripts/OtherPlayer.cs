@@ -33,7 +33,6 @@ namespace DialogueSystem
             {
                 _gameManager.StartDialogue(this.gameObject, 0);
                 speaking = true;
-                Debug.Log("This is a " + tag);
             }
             else if (!speaking && mood == Mood.Busy)
             {
