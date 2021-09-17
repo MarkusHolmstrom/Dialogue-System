@@ -1896,7 +1896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 164}
+  m_AnchoredPosition: {x: 0, y: 184}
   m_SizeDelta: {x: 850, y: 35}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1282428769
@@ -1953,8 +1953,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2111,6 +2111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 2015992822}
   _dialogueText: {fileID: 1282428769}
+  _typingSpeed: 0.3
+  _letterAnimationActivated: 1
 --- !u!1 &1468247438
 GameObject:
   m_ObjectHideFlags: 0

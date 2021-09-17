@@ -22,13 +22,14 @@ namespace DialogueSystem
     public class DialogueManager : MonoBehaviour
     {
         public GameState gameState;
-        private readonly string _nurse = "Nurse";
-        private readonly string _doctor = "Doctor";
 
         public GameObject optionGO; // Assigned in inspector
         public Text[] optionTexts = new Text[3]; // Assigned in inspector, index = 0 is the top one
         public GameObject continueButton;
         public Button[] optionButtons = new Button[3];
+
+        private readonly string _nurse = "Nurse";
+        private readonly string _doctor = "Doctor";
 
         private readonly int lengthDialogueArray = 4;
 
@@ -210,9 +211,9 @@ namespace DialogueSystem
             if (_addLinesCounter >= additionalNPCLines.Length) // Done with the conversation:
             {
                 // ugly quick-fix to change the doctor's mood:
-                GameObject doc = GameObject.FindGameObjectWithTag("Doctor");
-                OtherPlayer op = doc.GetComponent<OtherPlayer>();
-                op.mood = OtherPlayer.Mood.Busy;
+                GameObject doc = GameObject.FindGameObjectWithTag(_doctor);
+                NPC npc = doc.GetComponent<NPC>();
+                npc.mood = NPC.Mood.Busy;
 
                 EndDialogue(additionalNPCLines[additionalNPCLines.Length - 1]);
                 return;

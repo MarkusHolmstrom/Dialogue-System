@@ -11,14 +11,12 @@ public class GameManager : MonoBehaviour
 
     private GameObject _nurse;
 
-
     private GameObject _uIGO;
     private UIManager _uIManager;
 
     void Awake()
     {
         _dialogueManager = _diaManagerGO.GetComponent<DialogueManager>();
-
 
         _uIGO = GameObject.FindGameObjectWithTag("Canvas");
         _uIManager = _uIGO.GetComponent<UIManager>();

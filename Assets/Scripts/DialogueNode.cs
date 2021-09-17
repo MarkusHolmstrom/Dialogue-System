@@ -7,7 +7,6 @@ namespace DialogueSystem
     public class DialogueNode
     {
         public int nodeID = -1; 
-        public string text;
         public List<DialogueOption> options = new List<DialogueOption>();
 
         public DialogueNode(int nodeID, List<DialogueOption> options)
